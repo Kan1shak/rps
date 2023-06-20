@@ -39,6 +39,7 @@ function play(choice){
 var playerScore = 0;
 var computerScore = 0;
 var winner = ""
+var winCss = ""
 const playerDisplay = document.querySelector('.player');
 const computerDisplay = document.querySelector('.computer');
 const resultDiv = document.querySelector('.result') ;
@@ -59,16 +60,21 @@ function game (choice){
 
     if (playerScore >= 5 && !(computerScore >= 5) ){
         winner = "Player wins! Click on the button below to reset";
+        winCss = "background-color: rgb(190, 255, 198); color: rgb(0, 80, 0); font-size: 2rem; font-weight: bold; padding: 1rem; border: 5px green solid;";
     } else if (computerScore >= 5 && !(playerScore >= 5) ){
         winner = "Computer wins! Click on the button below to reset";
+        winCss = "background-color: rgb(254, 173, 173); color: rgb(80, 0, 0); font-size: 2rem; font-weight: bold; padding: 1rem;border: 5px red solid;";
     }else if (playerScore <= 5 && computerScore <= 5){
         winner = "First to 5 wins!";
+        winCss = "background-color: white; color: black; font-size: 2rem; font-weight: bold; padding: 1rem;";
     }
     resultDiv.textContent = winner;
+    resultDiv.style.cssText = winCss;
 
     if (playerScore >=5 || computerScore >=5){
         resetButton.style.display = 'block';
         resetButton.textContent = "Click here to reset!";
+
     }
 }
 
@@ -96,5 +102,5 @@ resetButton.addEventListener('click', () =>{
     displayChoicePlayer.textContent = "";
     displayChoiceComputer.textContent = "";
     resetButton.style.display = 'none';
-
+    resultDiv.style.cssText = "";
 })
